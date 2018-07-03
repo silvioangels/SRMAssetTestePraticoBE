@@ -23,21 +23,24 @@ public class Cliente implements Serializable {
 	private static final long serialVersionUID = -8392970102876097390L;
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
 
-	@Column(name = "nome", nullable = false)
+	@Column(name = "nome", nullable = true)
 	private String nome;
 
-	@Column(name = "limite_credito", nullable = false)
+	@Column(name = "limite_credito", nullable = true)
 	private BigDecimal limiteCredito;
 
 	@Enumerated(EnumType.STRING)
-	@Column(name = "perfil", nullable = false)
-	private RiscoEnum perfil;
-	
-	@Column(name = "data_criacao", nullable = false)
+	@Column(name = "risco", nullable = true)
+	private RiscoEnum risco;
+
+	@Column(name = "data_criacao", nullable = true)
 	private Date dataCriacao;
+
+	@Column(name = "tx_juros", nullable = true)
+	private int txJuros;
 
 	public int getId() {
 		return id;
@@ -63,12 +66,12 @@ public class Cliente implements Serializable {
 		this.limiteCredito = limiteCredito;
 	}
 
-	public RiscoEnum getPerfil() {
-		return perfil;
+	public RiscoEnum getRisco() {
+		return risco;
 	}
 
-	public void setPerfil(RiscoEnum perfil) {
-		this.perfil = perfil;
+	public void setRisco(RiscoEnum risco) {
+		this.risco = risco;
 	}
 
 	public Date getDataCriacao() {
@@ -78,17 +81,25 @@ public class Cliente implements Serializable {
 	public void setDataCriacao(Date dataCriacao) {
 		this.dataCriacao = dataCriacao;
 	}
-	
+
+	public int getTxJuros() {
+		return txJuros;
+	}
+
+	public void setTxJuros(int txJuros) {
+		this.txJuros = txJuros;
+	}
+
 	@PrePersist
-    public void prePersist() {
-        final Date atual = new Date();
-        dataCriacao = atual;
-    }
+	public void prePersist() {
+		final Date atual = new Date();
+		dataCriacao = atual;
+	}
 
 	@Override
 	public String toString() {
-		return "Cliente [id=" + id + ", nome=" + nome + ", limiteCredito=" + limiteCredito + ", perfil=" + perfil
-				+ ", dataCriacao=" + dataCriacao + "]";
+		return "Cliente [id=" + id + ", nome=" + nome + ", limiteCredito=" + limiteCredito + ", risco=" + risco
+				+ ", dataCriacao=" + dataCriacao + ", txJuros=" + txJuros + "]";
 	}
 
 }
