@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -39,9 +38,13 @@ public class ClienteController {
 		
 	}
 	
-	@GetMapping(value = "/{nome}")
-	public String exemplo(@PathVariable("nome") String nome) {
-		 return "Olá " + nome;
+	@GetMapping
+	public ResponseEntity<Response<ClienteDto>> recuperarClientes() {
+		Response<ClienteDto> response = new Response<ClienteDto>();
+		
+		response.setData(clienteService.recuperarClientes());
+		
+		return ResponseEntity.ok(response);
 	}
 	
 }

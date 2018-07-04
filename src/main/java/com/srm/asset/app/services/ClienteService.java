@@ -1,6 +1,8 @@
 package com.srm.asset.app.services;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -48,6 +50,20 @@ public class ClienteService {
 		
 		clienteRepository.save(clienteEntity);
 		
+	}
+	
+	public List<ClienteDto> recuperarClientes(){
+		List<ClienteDto> listaClientes = new ArrayList<ClienteDto>();
+		
+		for (Cliente cliente : clienteRepository.findAll()) {
+			ClienteDto clienteDto = new ClienteDto(); 
+			clienteDto.setNome(cliente.getNome());
+			clienteDto.setLimiteCredito(cliente.getLimiteCredito());
+			clienteDto.setRisco(cliente.getRisco().name());
+			listaClientes.add(clienteDto);
+		}
+		
+		return listaClientes;
 	}
 	
 }

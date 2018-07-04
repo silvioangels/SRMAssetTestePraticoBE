@@ -5,17 +5,17 @@ import java.util.List;
 
 public class Response<T> {
 
-	private T data;
+	private List<T> data;
 	private List<String> errors;
 
 	public Response() {
 	}
 
-	public T getData() {
+	public List<T> getData() {
 		return data;
 	}
 
-	public void setData(T data) {
+	public void setData(List<T> data) {
 		this.data = data;
 	}
 
