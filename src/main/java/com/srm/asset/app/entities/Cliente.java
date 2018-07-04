@@ -42,6 +42,9 @@ public class Cliente implements Serializable {
 	@Column(name = "tx_juros", nullable = true)
 	private int txJuros;
 
+	@Column(name = "limite_credito_calc", nullable = true)
+	private BigDecimal limiteCreditoCalculado;
+
 	public int getId() {
 		return id;
 	}
@@ -90,16 +93,25 @@ public class Cliente implements Serializable {
 		this.txJuros = txJuros;
 	}
 
-	@PrePersist
-	public void prePersist() {
-		final Date atual = new Date();
-		dataCriacao = atual;
+	public BigDecimal getLimiteCreditoCalculado() {
+		return limiteCreditoCalculado;
+	}
+
+	public void setLimiteCreditoCalculado(BigDecimal limiteCreditoCalculado) {
+		this.limiteCreditoCalculado = limiteCreditoCalculado;
 	}
 
 	@Override
 	public String toString() {
 		return "Cliente [id=" + id + ", nome=" + nome + ", limiteCredito=" + limiteCredito + ", risco=" + risco
-				+ ", dataCriacao=" + dataCriacao + ", txJuros=" + txJuros + "]";
+				+ ", dataCriacao=" + dataCriacao + ", txJuros=" + txJuros + ", limiteCreditoCalculado="
+				+ limiteCreditoCalculado + "]";
+	}
+
+	@PrePersist
+	public void prePersist() {
+		final Date atual = new Date();
+		dataCriacao = atual;
 	}
 
 }

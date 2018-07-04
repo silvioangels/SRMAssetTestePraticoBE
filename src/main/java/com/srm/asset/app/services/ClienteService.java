@@ -1,5 +1,7 @@
 package com.srm.asset.app.services;
 
+import java.math.BigDecimal;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -35,6 +37,14 @@ public class ClienteService {
 			clienteEntity.setTxJuros(0);
 			break;
 		}
+		
+		BigDecimal valorLimiteCreditoCalculado = clienteDto.getLimiteCredito().add(
+				clienteDto.getLimiteCredito().multiply(
+						new BigDecimal(clienteEntity.getTxJuros()).divide(new BigDecimal(100))
+				)
+		); 
+		
+		clienteEntity.setLimiteCreditoCalculado(valorLimiteCreditoCalculado);
 		
 		clienteRepository.save(clienteEntity);
 		
