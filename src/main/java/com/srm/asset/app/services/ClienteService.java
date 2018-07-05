@@ -57,9 +57,14 @@ public class ClienteService {
 		
 		for (Cliente cliente : clienteRepository.findAll()) {
 			ClienteDto clienteDto = new ClienteDto(); 
+			
+			clienteDto.setId(cliente.getId());
 			clienteDto.setNome(cliente.getNome());
 			clienteDto.setLimiteCredito(cliente.getLimiteCredito());
 			clienteDto.setRisco(cliente.getRisco().name());
+			clienteDto.setTxJuros(cliente.getTxJuros());
+			clienteDto.setLimiteCreditoCalculado(cliente.getLimiteCreditoCalculado());
+			
 			listaClientes.add(clienteDto);
 		}
 		
