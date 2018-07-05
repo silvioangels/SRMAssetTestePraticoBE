@@ -2,6 +2,8 @@ package com.srm.asset.app.dtos;
 
 import java.math.BigDecimal;
 
+import javax.validation.constraints.NotNull;
+
 import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.NotEmpty;
 
@@ -21,7 +23,8 @@ public class ClienteDto {
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
-
+	
+	@NotNull(message = "Limite de Credito deve ser preenchido")
 	public BigDecimal getLimiteCredito() {
 		return limiteCredito;
 	}
@@ -29,7 +32,8 @@ public class ClienteDto {
 	public void setLimiteCredito(BigDecimal limiteCredito) {
 		this.limiteCredito = limiteCredito;
 	}
-
+	
+	@NotNull(message = "Risco deve ser selecionado")
 	public String getRisco() {
 		return risco;
 	}
