@@ -20,4 +20,4 @@ Parte Back End da solicitação do teste pratico da SRMAsset
 Para gerar pacote, rodar mvn clean install
 
 ## Lista das APIs
-Para ver as APIs disponiveis, acessar a documentação [swagger] (http://localhost:8088/swagger-ui.html)
+Para ver as APIs disponiveis, acessar a documentação [Swagger](http://localhost:8088/swagger-ui.html)
